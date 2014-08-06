@@ -1,0 +1,52 @@
+package de.general.io;
+
+
+import java.util.*;
+import java.io.*;
+
+import de.general.util.*;
+import de.general.log.*;
+
+
+/**
+ *
+ * @author knauth
+ */
+public class FileExtFileProvider extends FileProvider
+{
+
+	////////////////////////////////////////////////////////////////
+	// Constants
+	////////////////////////////////////////////////////////////////
+
+	////////////////////////////////////////////////////////////////
+	// Variables
+	////////////////////////////////////////////////////////////////
+
+	////////////////////////////////////////////////////////////////
+	// Constructors
+	////////////////////////////////////////////////////////////////
+
+	public FileExtFileProvider(File dir, String fileExt, ILogInterface log)
+	{
+		this(dir, fileExt, false, log);
+	}
+
+	public FileExtFileProvider(File dir, String fileExt, boolean bRecursive, ILogInterface log)
+	{
+		if (bRecursive) throw new NotYetImplementedException();
+
+		if (!fileExt.startsWith(".")) fileExt = "." + fileExt;
+		for (File f : dir.listFiles()) {
+			String name = f.getName();
+			if (name.endsWith(fileExt)) {
+				add(f);
+			}
+		}
+	}
+
+	////////////////////////////////////////////////////////////////
+	// Methods
+	////////////////////////////////////////////////////////////////
+
+}

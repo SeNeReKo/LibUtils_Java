@@ -1,0 +1,74 @@
+package de.general.util;
+
+
+import java.util.*;
+
+
+/**
+ *
+ * @author knauth
+ */
+public class CounterMap<T>
+{
+
+	////////////////////////////////////////////////////////////////
+	// Constants
+	////////////////////////////////////////////////////////////////
+
+	////////////////////////////////////////////////////////////////
+	// Variables
+	////////////////////////////////////////////////////////////////
+
+	int total;
+	HashMap<T, Counter> map;
+
+	////////////////////////////////////////////////////////////////
+	// Constructors
+	////////////////////////////////////////////////////////////////
+
+	/**
+	 * Constructor.
+	 */
+	public CounterMap()
+	{
+		map = new HashMap<T, Counter>();
+	}
+
+	////////////////////////////////////////////////////////////////
+	// Methods
+	////////////////////////////////////////////////////////////////
+
+	public void increment(T key)
+	{
+		Counter c = map.get(key);
+		if (c == null) {
+			c = new Counter();
+			map.put(key, c);
+		}
+		c.increment();
+		total++;
+	}
+
+	public Set<T> getKeys()
+	{
+		return map.keySet();
+	}
+
+	public int getValue(T key)
+	{
+		Counter c = map.get(key);
+		if (c == null) return 0;
+		return c.getValue();
+	}
+
+	public int countKeys()
+	{
+		return map.size();
+	}
+
+	public int countValuesInSum()
+	{
+		return total;
+	}
+
+}

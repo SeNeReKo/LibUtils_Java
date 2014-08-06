@@ -1,0 +1,130 @@
+/* JavaDoq - Style Definitions*/
+body { background-color: #ffffff; color: #000000}
+#header { font-family: Arial, Helvetica, sans-serif; color: #0000a0;  background-color:#ccccee}
+#footer { font-family: Arial, Helvetica, sans-serif; color: #0000a0;  background-color:#ccccee }
+#line-number { color: #0000a0;  background-color:#ffffff }
+#java-source a:link		{ color: #000000; }
+#java-source a:visited	{ color: #000000; }
+#java-source pre			{ color: #000000; }
+#abstract		{ color: #a00a00 ; font-weight: bold }
+#boolean			{ color: #a00a00 ; font-weight: bold }
+#break			{ color: #a00a00 ; font-weight: bold }
+#byte			{ color: #a00a00 ; font-weight: bold }
+#case			{ color: #a00a00 ; font-weight: bold }
+#catch			{ color: #a00a00 ; font-weight: bold }
+#char			{ color: #a00a00 ; font-weight: bold }
+#class			{ color: #a00a00 ; font-weight: bold }
+#const			{ color: #a00a00 ; font-weight: bold }
+#continue		{ color: #a00a00 ; font-weight: bold }
+#default			{ color: #a00a00 ; font-weight: bold }
+#do				{ color: #a00a00 ; font-weight: bold }
+#double			{ color: #a00a00 ; font-weight: bold }
+#else			{ color: #a00a00 ; font-weight: bold }
+#extends			{ color: #a00a00 ; font-weight: bold }
+#false			{ color: #a00a00 ; font-weight: bold }
+#final			{ color: #a00a00 ; font-weight: bold }
+#finally			{ color: #a00a00 ; font-weight: bold }
+#float			{ color: #a00a00 ; font-weight: bold }
+#for				{ color: #a00a00 ; font-weight: bold }
+#goto			{ color: #a00a00 ; font-weight: bold }
+#if				{ color: #a00a00 ; font-weight: bold }
+#implements		{ color: #a00a00 ; font-weight: bold }
+#import			{ color: #a00a00 ; font-weight: bold }
+#instanceof		{ color: #a00a00 ; font-weight: bold }
+#int				{ color: #a00a00 ; font-weight: bold }
+#interface		{ color: #a00a00 ; font-weight: bold }
+#long			{ color: #a00a00 ; font-weight: bold }
+#native			{ color: #a00a00 ; font-weight: bold }
+#new				{ color: #a00a00 ; font-weight: bold }
+#package			{ color: #a00a00 ; font-weight: bold }
+#private			{ color: #a00a00 ; font-weight: bold }
+#protected		{ color: #a00a00 ; font-weight: bold }
+#public			{ color: #a00a00 ; font-weight: bold }
+#return			{ color: #a00a00 ; font-weight: bold }
+#short			{ color: #a00a00 ; font-weight: bold }
+#static			{ color: #a00a00 ; font-weight: bold }
+#strictfp		{ color: #a00a00 ; font-weight: bold }
+#super			{ color: #a00a00 ; font-weight: bold }
+#switch			{ color: #a00a00 ; font-weight: bold }
+#synchronized	{ color: #a00a00 ; font-weight: bold }
+#this			{ color: #a00a00 ; font-weight: bold }
+#throw			{ color: #a00a00 ; font-weight: bold }
+#throws			{ color: #a00a00 ; font-weight: bold }
+#transient		{ color: #a00a00 ; font-weight: bold }
+#true			{ color: #a00a00 ; font-weight: bold }
+#try				{ color: #a00a00 ; font-weight: bold }
+#void			{ color: #a00a00 ; font-weight: bold }
+#volatile		{ color: #a00a00 ; font-weight: bold }
+#while			{ color: #a00a00 ; font-weight: bold }
+#single-line-comment					{ color: #00a000; }
+#formal-comment						{ color: #0000a0; }
+#multi-line-comment					{ color: #00a000; }
+#characer-literal					{ color: #0000a0; }
+#string-literal						{ color: #0000a0; }
+#decimal-literal						{ color: #000000 }
+#floating-point-literal				{ color: #000000 }
+#hex-literal							{ color: #000000 }
+#integer-literal						{ color: #000000 }
+#octal-literal						{ color: #000000 }
+#decimal-floating-point-literal		{ color: #000000 }
+#decimal-exponent					{ color: #000000 }
+#hexa-decimal-floating-point-literal	{ color: #000000 }
+#hexa-decimal-exponent				{ color: #000000 }
+#lookahead							{ color: #f000f0 }
+#ignore-case							{ color: #f000f0 }
+#parser-begin						{ color: #f000f0 }
+#parser-end							{ color: #f000f0 }
+#javacode							{ color: #f000f0 }
+#token								{ color: #f000f0 }
+#special-token						{ color: #f000f0 }
+#more								{ color: #f000f0 }
+#skip								{ color: #f000f0 }
+#token-mgr-decls						{ color: #f000f0 }
+#eof									{ color: #f000f0 }
+#left-paren				{ color: #000000 }
+#right-paren				{ color: #000000 }
+#left-brace				{ color: #000000 }
+#right-brace				{ color: #000000 }
+#left-bracket			{ color: #000000 }
+#right-bracket			{ color: #000000 }
+#semi-colon				{ color: #000000 }
+#comma					{ color: #000000 }
+#dot						{ color: #000000 }
+#at						{ color: #000000 }
+#assign					{ color: #000000 }
+#lt						{ color: #000000 }
+#bang					{ color: #000000 }
+#tilde					{ color: #000000 }
+#hook					{ color: #000000 }
+#colon					{ color: #000000 }
+#eq						{ color: #000000 }
+#le						{ color: #000000 }
+#ge						{ color: #000000 }
+#ne						{ color: #000000 }
+#sc-or					{ color: #f000f0 }
+#sc-and					{ color: #f000f0 }
+#incr					{ color: #f000f0 }
+#decr					{ color: #f000f0 }
+#plus					{ color: #000000 }
+#minus					{ color: #000000 }
+#star					{ color: #000000 }
+#slash					{ color: #000000 }
+#bit-and					{ color: #000000 }
+#bit-or					{ color: #000000 }
+#xor						{ color: #000000 }
+#rem						{ color: #000000 }
+#plus-assign				{ color: #000000 }
+#minus-assign			{ color: #000000 }
+#star-assign				{ color: #000000 }
+#slash-assign			{ color: #000000 }
+#and-assign				{ color: #000000 }
+#or-assign				{ color: #000000 }
+#xor-assign				{ color: #000000 }
+#rem-assign				{ color: #000000 }
+#ellipsis				{ color: #000000 }
+#right-unsigned-shift	{ color: #000000 }
+#right-signed-shift		{ color: #000000 }
+#gt						{ color: #000000 }
+#identifier				{ color: #000000 }
+#letter					{ color: #f000f0 }
+#part-letter				{ color: #f000f0 }
