@@ -16,9 +16,9 @@ public class Tokenizer
 	// Constants
 	////////////////////////////////////////////////////////////////
 
-	public static final int OriginalSpaces = 1;
-	public static final int RemoveDuplicateSpaces = 2;
-	public static final int SkipAllSpaces = 3;
+	public static final int ORIGINAL_SPACES = 1;
+	public static final int REMOVE_DUPLICATE_SPACES = 2;
+	public static final int SKIP_ALL_SPACES = 3;
 
 	////////////////////////////////////////////////////////////////
 	// Variables
@@ -37,7 +37,7 @@ public class Tokenizer
 	 * Constructor.
 	 *
 	 * @param	bLowerizeCharacters		Convert all characters to lower case using the standard <code>char.ToLower()</code> method
-	 * @param	bRemoveDuplicateSpaces	Convert duplicate spaces to a single space character
+	 * @param	spaceProcessing			Information how to deal with spaces
 	 * @param	bParseStrings			Recognize strings in the input data
 	 * @param	extraAlphabetLetters	Extra alphabet letters to recognize more characters as letters than the default ones
 	 */
@@ -94,7 +94,7 @@ public class Tokenizer
 		sb.clear();
 	}
 
-	public Token[] Tokenize(String input)
+	public Token[] tokenize(String input)
 	{
 		/*
 		if (input.StartsWith("[a + paṭi°]")) {
@@ -173,14 +173,14 @@ public class Tokenizer
 			if (Character.isWhitespace(c) || (c == (char)13) || (c == (char)10)) {
 				__createTokenFromBufferSkipIfEmpty(ITokenConstants.Word, posLastBegin, sb, tokens);
 
-				if (spaceProcessing == OriginalSpaces) {
+				if (spaceProcessing == ORIGINAL_SPACES) {
 					tokens.add(Token.createSpaceToken(pos));
 				} else
-				if (spaceProcessing == RemoveDuplicateSpaces) {
+				if (spaceProcessing == REMOVE_DUPLICATE_SPACES) {
 					if ((tokens.size() > 0) && tokens.get(tokens.size() - 1).isSpace()) continue;
 					tokens.add(Token.createSpaceToken(pos));
 				} else
-				if (spaceProcessing == SkipAllSpaces) {
+				if (spaceProcessing == SKIP_ALL_SPACES) {
 				} else {
 					throw new ImplementationErrorException();
 				}
