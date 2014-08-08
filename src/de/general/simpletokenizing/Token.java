@@ -73,6 +73,10 @@ public class Token implements ITokenConstants
 		return GeneralType == ITokenConstants.EOS;
 	}
 
+	public int getType () {
+		return GeneralType;
+	}
+	
 	public String toString()
 	{
 		switch (GeneralType) {
