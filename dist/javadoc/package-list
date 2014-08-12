@@ -3,5 +3,6 @@ de.general.cfg.impl
 de.general.io
 de.general.log
 de.general.simpletokenizing
+de.general.transliteration
 de.general.util
 de.general.xml
