@@ -1,8 +1,11 @@
 de.general.cfg
 de.general.cfg.impl
+de.general.graph
+de.general.graph.impl
 de.general.io
 de.general.log
 de.general.simpletokenizing
 de.general.transliteration
+de.general.transliteration.impl
 de.general.util
 de.general.xml
