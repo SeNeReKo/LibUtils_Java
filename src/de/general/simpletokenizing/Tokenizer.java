@@ -28,7 +28,8 @@ public class Tokenizer
 	int spaceProcessing;
 	String extraAlphabetLetters;
 	boolean bParseStrings;
-
+	private StringBuffer sb;
+	
 	////////////////////////////////////////////////////////////////
 	// Constructors
 	////////////////////////////////////////////////////////////////
@@ -48,53 +49,56 @@ public class Tokenizer
 		this.spaceProcessing = spaceProcessing;
 		this.bLowerizeCharacters = bLowerizeCharacters;
 		this.extraAlphabetLetters = (extraAlphabetLetters == null) ? "" : extraAlphabetLetters;
+		sb = new StringBuffer();
 	}
 
 	////////////////////////////////////////////////////////////////
 	// Methods
 	////////////////////////////////////////////////////////////////
 
-	private void __createTokenFromBufferDontSkipIfEmpty(int tokenType, int posLastEmit, CharBuffer sb,
-		ArrayList<Token> outTokenCollection)
+	private void __createTokenFromBufferDontSkipIfEmpty(int tokenType, int posLastEmit, List<Token> outlist)
 	{
+		Token tok;
 		switch (tokenType) {
 			case ITokenConstants.StringSQ:
-				outTokenCollection.add(Token.createStringSQToken(posLastEmit, sb.toString()));
+				tok = Token.createStringSQToken(posLastEmit, sb.toString());
 				break;
 			case ITokenConstants.StringDQ:
-				outTokenCollection.add(Token.createStringDQToken(posLastEmit, sb.toString()));
+				tok = Token.createStringDQToken(posLastEmit, sb.toString());
 				break;
 			case ITokenConstants.Word:
-				outTokenCollection.add(Token.createWordToken(posLastEmit, sb.toString()));
+				tok = Token.createWordToken(posLastEmit, sb.toString());
 				break;
 			default:
 				throw new RuntimeException();
 		}
-		sb.clear();
+		sb = new StringBuffer();
+		outlist.add(tok);
 	}
 
-	private void __createTokenFromBufferSkipIfEmpty(int tokenType, int posLastEmit, CharBuffer sb,
-		ArrayList<Token> outTokenCollection)
+	private void __createTokenFromBufferSkipIfEmpty(int tokenType, int posLastEmit, List<Token> outlist)
 	{
 		if (sb.length() == 0) return;
-
+		Token tok;
 		switch (tokenType) {
 			case ITokenConstants.StringSQ:
-				outTokenCollection.add(Token.createStringSQToken(posLastEmit, sb.toString()));
+				tok = (Token.createStringSQToken(posLastEmit, sb.toString()));
 				break;
 			case ITokenConstants.StringDQ:
-				outTokenCollection.add(Token.createStringDQToken(posLastEmit, sb.toString()));
+				tok = (Token.createStringDQToken(posLastEmit, sb.toString()));
 				break;
 			case ITokenConstants.Word:
-				outTokenCollection.add(Token.createWordToken(posLastEmit, sb.toString()));
+				tok = (Token.createWordToken(posLastEmit, sb.toString()));
 				break;
 			default:
 				throw new RuntimeException();
 		}
-		sb.clear();
+		
+		sb = new StringBuffer();
+		outlist.add(tok);
 	}
 
-	public Token[] tokenize(String input)
+	public List<Token> tokenize(String input)
 	{
 		/*
 		if (input.StartsWith("[a + paṭi°]")) {
@@ -103,7 +107,7 @@ public class Tokenizer
 		*/
 
 		ArrayList<Token> tokens = new ArrayList<Token>();
-		CharBuffer sb = new CharBuffer();
+		sb = new StringBuffer();
 
 		boolean bInSingleQuotes = false;
 		boolean bInDoubleQuotes = false;
@@ -112,6 +116,7 @@ public class Tokenizer
 		int pos = 0;
 		int posLastBegin = 1;
 		for (char c2 : input.toCharArray()) {
+			
 			pos++;
 			char c = bLowerizeCharacters ? Character.toLowerCase(c2) : c2;
 
@@ -125,7 +130,7 @@ public class Tokenizer
 
 			if (bInSingleQuotes) {
 				if (c == '\'') {
-					__createTokenFromBufferDontSkipIfEmpty(ITokenConstants.StringSQ, posLastBegin, sb, tokens);
+					__createTokenFromBufferDontSkipIfEmpty(ITokenConstants.StringSQ, posLastBegin, tokens);
 					bInSingleQuotes = false;
 				} else
 				if (c == '\\') {
@@ -140,7 +145,7 @@ public class Tokenizer
 
 			if (bInDoubleQuotes) {
 				if (c == '\"') {
-					__createTokenFromBufferDontSkipIfEmpty(ITokenConstants.StringDQ, posLastBegin, sb, tokens);
+					__createTokenFromBufferDontSkipIfEmpty(ITokenConstants.StringDQ, posLastBegin, tokens);
 					bInDoubleQuotes = false;
 				} else
 				if (c == '\\') {
@@ -157,12 +162,12 @@ public class Tokenizer
 
 			if (bParseStrings) {
 				if (c == '\'') {
-					__createTokenFromBufferSkipIfEmpty(ITokenConstants.Word, posLastBegin, sb, tokens);
+					__createTokenFromBufferSkipIfEmpty(ITokenConstants.Word, posLastBegin, tokens);
 					bInSingleQuotes = true;
 					continue;
 				} else
 				if (c == '\"') {
-					__createTokenFromBufferSkipIfEmpty(ITokenConstants.Word, posLastBegin, sb, tokens);
+					__createTokenFromBufferSkipIfEmpty(ITokenConstants.Word, posLastBegin, tokens);
 					bInDoubleQuotes = true;
 					continue;
 				}
@@ -171,7 +176,7 @@ public class Tokenizer
 			// ----
 
 			if (Character.isWhitespace(c) || (c == (char)13) || (c == (char)10)) {
-				__createTokenFromBufferSkipIfEmpty(ITokenConstants.Word, posLastBegin, sb, tokens);
+				__createTokenFromBufferSkipIfEmpty(ITokenConstants.Word, posLastBegin, tokens);
 
 				if (spaceProcessing == ORIGINAL_SPACES) {
 					tokens.add(Token.createSpaceToken(pos));
@@ -198,7 +203,7 @@ public class Tokenizer
 
 			// ----
 
-			__createTokenFromBufferSkipIfEmpty(ITokenConstants.Word, posLastBegin, sb, tokens);
+			__createTokenFromBufferSkipIfEmpty(ITokenConstants.Word, posLastBegin, tokens);
 
 			tokens.add(Token.createDelimiterToken(pos, c));
 		}
@@ -207,11 +212,11 @@ public class Tokenizer
 		if (bInSingleQuotes) throw new RuntimeException("Syntax error at: " + pos);
 		if (bInDoubleQuotes) throw new RuntimeException("Syntax error at: " + pos);
 
-		__createTokenFromBufferSkipIfEmpty(ITokenConstants.Word, posLastBegin, sb, tokens);
+		__createTokenFromBufferSkipIfEmpty(ITokenConstants.Word, posLastBegin, tokens);
 
 		tokens.add(new Token(pos, "", ITokenConstants.EOS));
 
-		return tokens.toArray(new Token[tokens.size()]);
+		return tokens;
 	}
 
 }
